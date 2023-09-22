@@ -1,0 +1,6 @@
+PWS_AutopilotLCD    KEYWORD1
+begin               KEYWORD2
+lamptest            KEYWORD2
+prompt              KEYWORD2
+annunciator         KEYWORD2
+digits              KEYWORD2
