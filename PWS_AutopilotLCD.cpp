@@ -27,6 +27,9 @@ PWS_AutopilotLCD::begin(uint8_t IVA)
 void
 PWS_AutopilotLCD::lampTest(int ms)
 {
+	// we don't do anything in case we don't have a positive number
+	if (ms<=0) return;
+
 	Wire.beginTransmission(0x3F);
 	Wire.write(0);
 	for (int i = 0; i < 22; i++) {
@@ -34,6 +37,12 @@ PWS_AutopilotLCD::lampTest(int ms)
 	}
 	Wire.endTransmission();
 	delay(ms);
+	clear();
+}
+
+void 
+PWS_AutopilotLCD::clear() 
+{
 	Wire.beginTransmission(0x3F);
 	Wire.write(0);
 	for (int i = 0; i < 22; i++) {
