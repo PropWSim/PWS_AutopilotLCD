@@ -178,6 +178,16 @@ PWS_AutopilotLCD::prompt(enum PROMPT display)
 		Wire.write(0x0A | (preserve[4] & 0b11110001));
 		Wire.endTransmission();
 		break;
+	  case B1_GPS:
+		Wire.beginTransmission(0x3F);
+		Wire.write(0x00);
+		Wire.write(0x8B);
+		Wire.write(0x06 | 0xE0);
+		Wire.write(0x88);
+		Wire.write(0x8D);
+		Wire.write(0x06 | (preserve[4] & 0b11110001));
+		Wire.endTransmission();
+		break;
 	  case B2_CLR:
 		Wire.beginTransmission(0x3F);
 		Wire.write(5);
@@ -267,6 +277,15 @@ PWS_AutopilotLCD::prompt(enum PROMPT display)
 		Wire.write(0xB0 | 0x0D);				//D13 | D14
 		Wire.write(0x00 | 0x0B);				//D12 | D13
 		Wire.write(0x00);						//D12
+		Wire.endTransmission();
+		break;
+	  case B3_GPS:
+		Wire.beginTransmission(0x3F);
+		Wire.write(18);
+		Wire.write(0x86 | (preserve[18] & 1));	//D14
+		Wire.write(0xE0 | 0x0D);				//D13 | D14
+		Wire.write(0x60 | 0x0E);				//D12 | D13
+		Wire.write(0xB8);						//D12
 		Wire.endTransmission();
 		break;
 	  case B4_CLR:
